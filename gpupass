@@ -75,5 +75,10 @@ systemctl start display-manager.service
 EOF
 sudo chmod +x /etc/libvirt/hooks/qemu.d/win11/release/end/stop.sh
 
+# Blacklist Nvidia drivers
+cat <<EOF | sudo tee /etc/modprobe.d/60-blacklist-nvidia.conf
+blacklist nouveau
+EOF
+
 # List structure
 tree /etc/libvirt/hooks
