@@ -1,8 +1,14 @@
 #!/usr/bin/bash
 set -e
 
+# Check if user is root and abort
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run as root"
+    exit
+fi
+
 # Install git if not installed
-sudo pacman -S git
+sudo pacman -S git --noconfirm
 
 # Download yay repo from AUR
 git clone https://aur.archlinux.org/yay.git
@@ -11,7 +17,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 
 # Build and install yay
-makepkg -si
+makepkg -si --noconfirm
 
 # Remove yay directory
 cd ..
