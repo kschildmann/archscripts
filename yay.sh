@@ -2,7 +2,7 @@
 set -e
 
 # Install git if not installed
-sudo pacman -S git --noconfirm
+sudo pacman -S git
 
 # Download yay repo from AUR
 git clone https://aur.archlinux.org/yay.git
@@ -11,7 +11,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 
 # Build and install yay
-makepkg -si --noconfirm
+makepkg -si
 
 # Remove yay directory
 cd ..
