@@ -2,7 +2,8 @@
 set -e
 
 # Install required packages
-sudo pacman -S qemu libvirt dmidecode edk2-ovmf virt-manager dnsmasq iptables-nft --noconfirm
+sudo pacman -S qemu libvirt dmidecode edk2-ovmf virt-manager dnsmasq iptables-nft tree --noconfirm
+sudo systemctl enable libvirtd
 
 # Create dir structure for Win11
 sudo mkdir -p /etc/libvirt/hooks/qemu.d/win11/prepare/begin
@@ -73,3 +74,6 @@ modprobe nvidia
 systemctl start display-manager.service
 EOF
 sudo chmod +x /etc/libvirt/hooks/qemu.d/win11/release/end/stop.sh
+
+# List structure
+tree /etc/libvirt/hooks
