@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+set -e
+
+# Check if user is root and abort
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run as root"
+    exit
+fi
+
+curl -L arch.schildmann.net/makepkg | bash
+curl -L arch.schildmann.net/yay | bash
+curl -L arch.schildmann.net/base | bash
+curl -L arch.schildmann.net/proton | bash
+curl -L arch.schildmann.net/teamviewer | bash
+curl -L arch.schildmann.net/virt | bash
+curl -L arch.schildmann.net/vmware | bash

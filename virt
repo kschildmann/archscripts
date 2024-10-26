@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+set -e
+
+# Check if user is root and abort
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run as root"
+    exit
+fi
+
+sudo pacman -S qemu libvirt dmidecode edk2-ovmf virt-manager dnsmasq iptables
+sudo systemctl enable libvirtd
+sudo usermod -aG libvirt $USER

@@ -7,12 +7,12 @@ if [ "$EUID" -eq 0 ]; then
     exit
 fi
 
-mkdir -p /tmp/schildmann/teamviewer
-cd /tmp/schildmann/teamviewer
+mkdir -p /tmp/schildmann/base
+cd /tmp/schildmann/base
 wget -O aur_install https://arch.schildmann.net/aur_install
 chmod +x aur_install
 export SCHILDMANN=1
-./aur_install teamviewer
+sudo pacman -Syu firefox neovim less vlc gimp inkscape libreoffice-fresh
+./aur_install thorium-browser-bin
 cd ..
-rm -rf /tmp/schildmann/teamviewer
-sudo systemctl enable teamviewerd
+rm -rf /tmp/schildmann/base
