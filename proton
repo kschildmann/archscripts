@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+set -e
+
+# Check if user is root and abort
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run as root"
+    exit
+fi
+
+mkdir -p /tmp/schildmann/proton
+cd /tmp/schildmann/proton
+wget -O aur_install https://arch.schildmann.net/aur_install
+chmod +x aur_install
+export SCHILDMANN=1
+./aur_install proton-vpn-gtk-app protonvpn-cli-community proton-mail-bin proton-pass-bin
+cd ..
+rm -rf /tmp/schildmann/proton
