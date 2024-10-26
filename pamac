@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+set -e
+
+# Check if user is root and abort
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run as root"
+    exit
+fi
+
+# Install git if not installed
+sudo pacman -S git base-devel --noconfirm
+
+# Download repo from AUR
+git clone https://aur.archlinux.org/pamac-aur.git
+
+# Change directory
+cd pamac-aur
+
+# Build and install
+makepkg -si --noconfirm
+
+# Remove directory
+cd ..
+rm -rf pamac-aur
