@@ -7,7 +7,7 @@ if [ "$EUID" -eq 0 ]; then
     exit
 fi
 
-sudo pacman -Syu --noconfirm base-devel
+sudo pacman -Syu --noconfirm git base-devel
 
 git config --global init.defaultBranch master
 
