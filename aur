@@ -7,17 +7,20 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
-echo "[1] yay"
-echo "[2] pamac"
-read -p "Choose an AUR helper to install: " choice
+# Get AUR helper from args
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <yay|pamac>"
+    exit 1
+fi
 
-sudo pacman -S git base-devel --noconfirm
+choice=$1
+
 mkdir -p /tmp/schildmann/aur
 cd /tmp/schildmann/aur
 
-if [ "$choice" == "1" ]; then
+if [ "$choice" == "yay" ]; then
     install_yay
-elif [ "$choice" == "2" ]; then
+elif [ "$choice" == "pamac" ]; then
     install_pamac
 else
     echo "Invalid choice"
@@ -28,12 +31,14 @@ cd ..
 rm -rf /tmp/schildmann/aur
 
 install_yay() {
+    sudo pacman -S git base-devel --noconfirm
     wget -O aur_install https://arch.schildman.net/aur_install
     chmod +x aur_install
     ./aur_install yay
 }
 
 install_pamac() {
+    sudo pacman -S git base-devel --noconfirm
     sudo pacman -S libhandy libadwaita --noconfirm
     wget -O aur_install https://arch.schildman.net/aur_install
     chmod +x aur_install
