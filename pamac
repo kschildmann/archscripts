@@ -8,17 +8,19 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 # Install git if not installed
-sudo pacman -S git base-devel --noconfirm
+sudo pacman -S git base-devel libhandy libadwaita --noconfirm
 
 # Download repo from AUR
+git clone https://aur.archlinux.org/libpamac-aur.git
 git clone https://aur.archlinux.org/pamac-aur.git
 
-# Change directory
-cd pamac-aur
-
-# Build and install
+# Install
+cd libpamac-aur
+makepkg -si --noconfirm
+cd ../pamac-aur
 makepkg -si --noconfirm
 
-# Remove directory
+# Remove directories
 cd ..
 rm -rf pamac-aur
+rm -rf libpamac-aur
