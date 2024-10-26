@@ -14,14 +14,6 @@ fi
 
 sudo pacman -S git base-devel --noconfirm
 
-if command -v yay &> /dev/null; then
-    use_yay $@
-elif command -v pamac &> /dev/null; then
-    use_pamac $@
-else
-    use_none $@
-fi
-
 use_yay(pkgs) {
     yay -S --noconfirm $pkgs
 }
@@ -41,3 +33,11 @@ use_none(pkgs) {
     done
     rm -rf /tmp/schildmann/aur_install
 }
+
+if command -v yay &> /dev/null; then
+    use_yay $@
+elif command -v pamac &> /dev/null; then
+    use_pamac $@
+else
+    use_none $@
+fi
