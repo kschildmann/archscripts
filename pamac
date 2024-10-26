@@ -11,16 +11,16 @@ fi
 sudo pacman -S git base-devel libhandy libadwaita --noconfirm
 
 # Download repo from AUR
-git clone https://aur.archlinux.org/libpamac-full.git
-git clone https://aur.archlinux.org/pamac-all.git
+git clone https://aur.archlinux.org/libpamac-aur.git
+git clone https://aur.archlinux.org/pamac-aur.git
 
 # Install
-cd libpamac-full
+cd libpamac-aur
 makepkg -si --noconfirm
-cd ../pamac-all
+cd ../pamac-aur
 makepkg -si --noconfirm
 
 # Remove directories
 cd ..
-rm -rf libpamac-full
-rm -rf pamac-all
+rm -rf libpamac-aur
+rm -rf pamac-aur
