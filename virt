@@ -7,6 +7,6 @@ if [ "$EUID" -eq 0 ]; then
     exit
 fi
 
-sudo pacman -S qemu libvirt dmidecode edk2-ovmf virt-manager dnsmasq iptables
+sudo pacman -S --noconfirm qemu libvirt dmidecode edk2-ovmf virt-manager dnsmasq iptables
 sudo systemctl enable libvirtd
 sudo usermod -aG libvirt $USER
