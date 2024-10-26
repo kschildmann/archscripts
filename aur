@@ -7,20 +7,18 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
-# Get AUR helper from args
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <yay|pamac>"
-    exit 1
-fi
-
-choice=$1
+echo "Which AUR helper do you want to install?"
+echo "1) yay"
+echo "2) pamac"
+while read -t 0 notused; do read -t 0 -n 256 notused; done
+read -p "Choice: " choice
 
 mkdir -p /tmp/schildmann/aur
 cd /tmp/schildmann/aur
 
-if [ "$choice" == "yay" ]; then
+if [ "$choice" == "1" ]; then
     install_yay
-elif [ "$choice" == "pamac" ]; then
+elif [ "$choice" == "2" ]; then
     install_pamac
 else
     echo "Invalid choice"
