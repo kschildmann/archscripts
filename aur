@@ -34,6 +34,7 @@ install_yay() {
     sudo pacman -S git base-devel --noconfirm
     wget -O aur_install https://arch.schildman.net/aur_install
     chmod +x aur_install
+    export SCHILDMANN=1
     ./aur_install yay
 }
 
@@ -42,5 +43,6 @@ install_pamac() {
     sudo pacman -S libhandy libadwaita --noconfirm
     wget -O aur_install https://arch.schildman.net/aur_install
     chmod +x aur_install
+    export SCHILDMANN=1
     ./aur_install libpamac-aur pamac-aur
 }
