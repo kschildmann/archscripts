@@ -9,5 +9,8 @@ fi
 
 THREADS=$(nproc)
 
+echo "Setting PKGEXT to .pkg.tar"
+echo "Setting MAKEFLAGS to -j$THREADS"
+
 sudo sed -i "s/PKGEXT='.pkg.tar.*$/PKGEXT='.pkg.tar'/" /etc/makepkg.conf
 sudo sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j$THREADS\"/" /etc/makepkg.conf
