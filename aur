@@ -10,7 +10,7 @@ fi
 echo "Which AUR helper do you want to install?"
 echo "1) yay"
 echo "2) pamac"
-while read -r -t 0; do read -r; done
+read -t 0 -n 10000 discard
 read -p "Choice: " choice
 
 mkdir -p /tmp/schildmann/aur
