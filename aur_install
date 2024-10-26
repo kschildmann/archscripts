@@ -12,7 +12,7 @@ if [ "$SCHILDMANN" -ne 1 ]; then
     exit 1
 fi
 
-sudo pacman -S git base-devel --noconfirm
+sudo pacman -Syu --noconfig --needed git base-devel
 
 use_yay() {
     yay -S --noconfirm $@

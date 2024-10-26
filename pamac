@@ -7,12 +7,12 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
-sudo pacman -Syu --noconfirm git base-devel
+sudo pacman -Syu --noconfirm --needed git base-devel
 
 mkdir -p /tmp/schildmann/aur
 cd /tmp/schildmann/aur
 
-sudo pacman -S libhandy libadwaita --noconfirm
+sudo pacman -Syu --noconfirm --needed libhandy libadwaita
 wget -O aur_install https://arch.schildmann.net/aur_install
 chmod +x aur_install
 export SCHILDMANN=1
