@@ -8,7 +8,7 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 # Install git if not installed
-sudo pacman -S git --noconfirm
+sudo pacman -S git base-devel --noconfirm
 
 # Download yay repo from AUR
 git clone https://aur.archlinux.org/yay.git
