@@ -7,6 +7,10 @@ if [ "$EUID" -eq 0 ]; then
     exit
 fi
 
+sudo pacman -Syu --noconfirm base-devel
+
+git config --global init.defaultBranch master
+
 THREADS=$(nproc)
 
 echo "Setting PKGEXT to .pkg.tar"
