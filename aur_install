@@ -12,6 +12,8 @@ if [ "$SCHILDMANN" -ne 1 ]; then
     exit 1
 fi
 
+sudo pacman -S git base-devel --noconfirm
+
 if command -v yay &> /dev/null; then
     use_yay $@
 elif command -v pamac &> /dev/null; then
