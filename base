@@ -12,7 +12,7 @@ cd /tmp/schildmann/base
 wget -O aur_install https://arch.schildmann.net/aur_install
 chmod +x aur_install
 export SCHILDMANN=1
-sudo pacman -Syu firefox neovim less vlc gimp inkscape libreoffice-fresh
+sudo pacman -Syu --noconfirm firefox neovim less vlc gimp inkscape libreoffice-fresh
 ./aur_install thorium-browser-bin spotify teamviewer
 cd ..
 rm -rf /tmp/schildmann/base
