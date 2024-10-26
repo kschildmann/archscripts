@@ -11,7 +11,7 @@ mkdir -p /tmp/schildmann/aur
 cd /tmp/schildmann/aur
 
 sudo pacman -S git base-devel --noconfirm
-wget -O aur_install https://arch.schildman.net/aur_install
+wget -O aur_install https://arch.schildmann.net/aur_install
 chmod +x aur_install
 export SCHILDMANN=1
 ./aur_install yay

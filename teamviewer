@@ -9,7 +9,7 @@ fi
 
 mkdir -p /tmp/schildmann/teamviewer
 cd /tmp/schildmann/teamviewer
-wget -O aur_install https://arch.schildman.net/aur_install
+wget -O aur_install https://arch.schildmann.net/aur_install
 chmod +x aur_install
 export SCHILDMANN=1
 ./aur_install teamviewer
