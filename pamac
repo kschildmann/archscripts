@@ -7,7 +7,7 @@ if [ "$EUID" -eq 0 ]; then
     exit
 fi
 
-# Install git if not installed
+# Install deps if not installed
 sudo pacman -S git base-devel libhandy libadwaita --noconfirm
 
 # Download repo from AUR
