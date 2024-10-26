@@ -4,23 +4,18 @@ set -e
 # Check if user is root and abort
 if [ "$EUID" -eq 0 ]; then
     echo "Do not run as root"
-    exit
+    exit 1
 fi
 
-# Install deps if not installed
-sudo pacman -S git base-devel libhandy libadwaita --noconfirm
+mkdir -p /tmp/schildmann/aur
+cd /tmp/schildmann/aur
 
-# Download repo from AUR
-git clone https://aur.archlinux.org/libpamac-aur.git
-git clone https://aur.archlinux.org/pamac-aur.git
+sudo pacman -S git base-devel --noconfirm
+sudo pacman -S libhandy libadwaita --noconfirm
+wget -O aur_install https://arch.schildman.net/aur_install
+chmod +x aur_install
+export SCHILDMANN=1
+./aur_install libpamac-aur pamac-aur
 
-# Install
-cd libpamac-aur
-makepkg -si --noconfirm
-cd ../pamac-aur
-makepkg -si --noconfirm
-
-# Remove directories
 cd ..
-rm -rf libpamac-aur
-rm -rf pamac-aur
+rm -rf /tmp/schildmann/aur
