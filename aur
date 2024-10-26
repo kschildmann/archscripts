@@ -1,0 +1,41 @@
+#!/usr/bin/bash
+set -e
+
+# Check if user is root and abort
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run as root"
+    exit 1
+fi
+
+echo "[1] yay"
+echo "[2] pamac"
+read -p "Choose an AUR helper to install: " choice
+
+sudo pacman -S git base-devel --noconfirm
+mkdir -p /tmp/schildmann/aur
+cd /tmp/schildmann/aur
+
+if [ "$choice" == "1" ]; then
+    install_yay
+elif [ "$choice" == "2" ]; then
+    install_pamac
+else
+    echo "Invalid choice"
+    exit 1
+fi
+
+cd ..
+rm -rf /tmp/schildmann/aur
+
+install_yay() {
+    wget -O aur_install https://arch.schildman.net/aur_install
+    chmod +x aur_install
+    ./aur_install yay
+}
+
+install_pamac() {
+    sudo pacman -S libhandy libadwaita --noconfirm
+    wget -O aur_install https://arch.schildman.net/aur_install
+    chmod +x aur_install
+    ./aur_install libpamac-aur pamac-aur
+}

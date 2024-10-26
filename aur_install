@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+set -e
+
+# Check if user is root and abort
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run as root"
+    exit 1
+fi
+
+if [ "$SCHILDMANN" -ne 1 ]; then
+    echo "This script is not meant to be run manually"
+    exit 1
+fi
+
+if command -v yay &> /dev/null; then
+    use_yay $@
+elif command -v pamac &> /dev/null; then
+    use_pamac $@
+else
+    echo "No AUR helper found"
+    echo "curl -L arch.schildman.net/aur | bash"
+    exit 1
+fi
+
+use_yay(pkgs) {
+    yay -S --noconfirm $pkgs
+}
+
+use_pamac(pkgs) {
+    pamac install --no-confirm $pkgs
+}
+
+use_none(pkgs) {
+    mkdir -p /tmp/schildmann/aur_install
+    cd /tmp/schildmann/aur_install
+    for pkg in $pkgs; do
+        git clone https://aur.archlinux.org/$pkg.git
+        cd $pkg
+        makepkg -si --noconfirm
+        cd ..
+    done
+    rm -rf /tmp/schildmann/aur_install
+}

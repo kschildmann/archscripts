@@ -7,15 +7,10 @@ if [ "$EUID" -eq 0 ]; then
     exit
 fi
 
-# Check if yay is installed
-if ! command -v yay &> /dev/null; then
-    echo "yay is not installed"
-    echo "https://arch.schildmann.net/yay.sh"
-    exit
-fi
-
-# Install teamviewer
-yay -S teamviewer --noconfirm
-
-# Enable teamviewerd service
-sudo systemctl enable --now teamviewerd.service
+mkdir -p /tmp/schildmann/teamviewer
+cd /tmp/schildmann/teamviewer
+wget -O aur_install https://arch.schildman.net/aur_install
+chmod +x aur_install
+./aur_install teamviewer
+cd ..
+rm -rf /tmp/schildmann/teamviewer
