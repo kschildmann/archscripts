@@ -17,9 +17,7 @@ if command -v yay &> /dev/null; then
 elif command -v pamac &> /dev/null; then
     use_pamac $@
 else
-    echo "No AUR helper found"
-    echo "curl -L arch.schildman.net/aur | bash"
-    exit 1
+    use_none $@
 fi
 
 use_yay(pkgs) {
