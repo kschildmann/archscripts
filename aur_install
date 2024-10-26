@@ -14,18 +14,18 @@ fi
 
 sudo pacman -S git base-devel --noconfirm
 
-use_yay(pkgs) {
-    yay -S --noconfirm $pkgs
+use_yay() {
+    yay -S --noconfirm $@
 }
 
-use_pamac(pkgs) {
-    pamac install --no-confirm $pkgs
+use_pamac() {
+    pamac install --no-confirm $@
 }
 
-use_none(pkgs) {
+use_none() {
     mkdir -p /tmp/schildmann/aur_install
     cd /tmp/schildmann/aur_install
-    for pkg in $pkgs; do
+    for pkg in $@; do
         git clone https://aur.archlinux.org/$pkg.git
         cd $pkg
         makepkg -si --noconfirm
