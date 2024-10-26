@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+set -e
+
+# Check if user is root and abort
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run as root"
+    exit
+fi
+
+THREADS=$(nproc)
+
+sudo sed -i "s/PKGEXT='.pkg.tar.*$/PKGEXT='.pkg.tar'/" /etc/makepkg.conf
+sudo sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j$THREADS\"/" /etc/makepkg.conf
