@@ -9,6 +9,6 @@ fi
 
 VIRT_USER=$USER
 
-sudo pacman -Syu --noconfirm --needed qemu libvirt dmidecode edk2-ovmf virt-manager dnsmasq iptables
+sudo pacman -Syu --noconfirm --needed qemu libvirt dmidecode edk2-ovmf virt-manager dnsmasq iptables-nft
 sudo systemctl enable libvirtd
 sudo usermod -aG libvirt $VIRT_USER
