@@ -7,6 +7,12 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
+# Check if is already installed
+if [ -x "$(command -v yay)" ]; then
+    echo "yay is already installed"
+    exit 0
+fi
+
 sudo pacman -Syu --noconfirm --needed git base-devel
 
 mkdir -p /tmp/schildmann/aur
