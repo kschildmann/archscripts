@@ -1,0 +1,52 @@
+#!/usr/bin/bash
+set -e
+
+# Check if user is root and abort
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not run as root"
+    exit
+fi
+
+sudo pacman -Syu --noconfirm --needed dialog
+
+SELECTION=$(dialog --checklist "AUR Helper" 0 0 15 yay "" off pamac "" off)
+
+if [ $? -ne 0 ]; then
+    echo "User exited"
+    exit 1
+fi
+
+sudo pacman -Syu --noconfirm --needed git base-devel
+
+if [ -d /tmp/schildmann/aur ]; then
+    rm -rf /tmp/schildmann/aur
+fi
+
+mkdir -p /tmp/schildmann/aur
+cd /tmp/schildmann/aur
+
+if [[ $SELECTION == *"yay"* ]]; then
+    if [ -x "$(command -v yay)" ]; then
+        echo "yay is already installed"
+    else
+        wget -O aur_install https://arch.schildmann.net/aur_install
+        chmod +x aur_install
+        export SCHILDMANN=1
+        ./aur_install yay
+    fi
+fi
+
+if [[ $SELECTION == *"pamac"* ]]; then
+    if [ -x "$(command -v pamac)" ]; then
+        echo "pamac is already installed"
+    else
+        sudo pacman -Syu --noconfirm --needed libhandy libadwaita
+        wget -O aur_install https://arch.schildmann.net/aur_install
+        chmod +x aur_install
+        export SCHILDMANN=1
+        ./aur_install libpamac-aur pamac-aur
+    fi
+fi
+
+cd /tmp
+rm -rf /tmp/schildmann/aur
