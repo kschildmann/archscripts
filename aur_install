@@ -15,7 +15,7 @@ fi
 sudo pacman -Syu --noconfirm --needed git base-devel
 
 use_yay() {
-    yay -S --noconfirm $@
+    yay -S --noconfirm --needed $@
 }
 
 use_pamac() {
