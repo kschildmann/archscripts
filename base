@@ -12,7 +12,7 @@ cd /tmp/schildmann/base
 wget -O aur_install https://arch.schildmann.net/aur_install
 chmod +x aur_install
 export SCHILDMANN=1
-sudo pacman -Syu --noconfirm --needed firefox neovim less vlc gimp inkscape libreoffice-fresh rustup code alacritty yubioath-desktop btop kdiff3 krename zip arj unarj p7zip unrar partitionmanager rigpreg papirus-icon-theme materia-kde
+sudo pacman -Syu --noconfirm --needed firefox neovim less vlc gimp inkscape libreoffice-fresh rustup code alacritty yubioath-desktop btop kdiff3 krename zip arj unarj p7zip unrar partitionmanager ripgreg papirus-icon-theme materia-kde
 ./aur_install thorium-browser-bin spotify teamviewer octopi ttf-ms-fonts jetbrains-toolbox zplug vimv teamspeak3-kde-wrapper lunarvim-git gpustat-git
 sudo pacman -Rcns --noconfirm konsole okular haruna
 cd ..
