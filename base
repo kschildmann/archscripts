@@ -14,6 +14,16 @@ chmod +x aur_install
 export SCHILDMANN=1
 sudo pacman -Syu --noconfirm --needed firefox neovim less vlc gimp inkscape libreoffice-fresh rustup code alacritty yubioath-desktop btop kdiff3 krename zip arj unarj p7zip unrar partitionmanager ripgrep papirus-icon-theme materia-kde
 ./aur_install thorium-browser-bin spotify teamviewer octopi ttf-ms-fonts jetbrains-toolbox zplug vimv teamspeak3-kde-wrapper lunarvim-git
-sudo pacman -Rcns --noconfirm konsole okular haruna
+
+if [ -x "$(command -v konsole)" ]; then
+    sudo pacman -Rcns --noconfirm konsole
+fi
+if [ -x "$(command -v okular)" ]; then
+    sudo pacman -Rcns --noconfirm okular
+fi
+if [ -x "$(command -v haruna)" ]; then
+    sudo pacman -Rcns --noconfirm haruna
+fi
+
 cd ..
 rm -rf /tmp/schildmann/base
